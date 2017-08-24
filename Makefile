@@ -1,27 +1,10 @@
-# detect what shell is used
-ifeq ($(findstring cmd.exe,$(SHELL)),cmd.exe)
-$(info "Info : Running on Windows shell cmd.exe")
-DEVNUL := NUL
-WHICH := where
-else
-$(info "Info : Running on Unix shell")
-DEVNUL := /dev/null
-WHICH := which
-endif
+X_CC = arm-none-eabi-gcc
+X_OBJCOPY = arm-none-eabi-objcopy
+X_AR = arm-none-eabi-ar
+X_LD = arm-none-eabi-ld
+X_GDB = arm-none-eabi-gdb
 
-
-# Find first cross compilation tools
-XTOOLS_DIR = $(abspath $(shell dirname `${WHICH} arm-none-eabi-gcc`)/..)
-
-# Set tool & Lib paths
-X_LIBC_DIR = $(XTOOLS_DIR)/arm-none-eabi/lib/armv7e-m/fpu
-X_CC = $(XTOOLS_DIR)/bin/arm-none-eabi-gcc
-X_OBJCOPY = $(XTOOLS_DIR)/bin/arm-none-eabi-objcopy
-X_AR = $(XTOOLS_DIR)/bin/arm-none-eabi-ar
-X_LD = $(XTOOLS_DIR)/bin/arm-none-eabi-ld
-X_GDB = $(XTOOLS_DIR)/bin/arm-none-eabi-gdb
-
-OUT_DIR = debug
+OUT_DIR = build
 
 OUTPUT = grbl-stm32
 
